@@ -5,6 +5,7 @@ on:
       - v*  
 jobs:
   Build-Executable:
+    permissions: write-all  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
