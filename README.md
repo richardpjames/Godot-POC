@@ -29,6 +29,3 @@ script it seems I need to check it in and run it, leaving behind a trail of fail
 
 In the end I managed to get there by creating an Ubuntu environment and then setting up my script to download
 and extract both Godot and the Godot Export templates and then using Godot in headless mode to complete the build process.
-
-I have also set the actions to only apply when tagging a particular checkin with v* (such as v0.1) so that I do not release
-every single check in that I push. This gives me much better control over my release pipeline.
