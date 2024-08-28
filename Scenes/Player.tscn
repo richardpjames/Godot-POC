@@ -434,7 +434,7 @@ shape = SubResource("CapsuleShape2D_xuysq")
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l3lyt")
-animation = &"Idle Down"
+animation = &"Attack Down"
 autoplay = "Idle Down"
 
 [node name="Player Camera" type="Camera2D" parent="."]

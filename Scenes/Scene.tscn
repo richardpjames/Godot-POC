@@ -114,3 +114,4 @@ tile_map_data = PackedByteArray("AAD///3/BQAAAAAAAAD///7/BQAAAAAAAAD/////BQAAAAA
 tile_set = SubResource("TileSet_uceq0")
 
 [node name="Player" parent="." instance=ExtResource("8_2wl7l")]
+_attackCooldown = 0.6
