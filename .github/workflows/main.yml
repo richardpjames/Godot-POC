@@ -5,17 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Download Godot
+        run: |
+          wget -v https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_mono_linux_x86_64.zip
+          unzip Godot_v4.3-stable_mono_linux_x86_64.zip
+      - name: Run Build
+        run: |
+          mkdir -v -p build/windows
+          godot -v --export "Windows" ./build/windows/Godot-POC.exe
+      - uses: actions/upload-artifact@v2
         with:
-          lfs: true
-      - name: Build
-        id: build
-        uses: manleydev/build-godot-action@v1.4.1
-        with:
-          name: example
-          preset: Windows
-          debugMode: "true"
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Windows
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          name: windows
+          path: build/windows
