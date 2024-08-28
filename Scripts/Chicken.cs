@@ -85,7 +85,7 @@ public partial class Chicken : CharacterBody2D
                 // Store the new distance and set this to the chosen direction
                 maxDistance = distanceToObject;
                 // In a tie this will be random as we randomised the list
-                chosenDirection = direction;
+                chosenDirection = direction;  
             }
         }
         // Return the eventually chosen direction
