@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://0lxl7vrhd5wf"]
+[gd_scene load_steps=18 format=4 uid="uid://0lxl7vrhd5wf"]
 
 [ext_resource type="Texture2D" uid="uid://c1opy0rhvywg2" path="res://Assets/CuteFantasy/Tiles/Cliff_Tile.png" id="1_l5gj2"]
 [ext_resource type="Texture2D" uid="uid://datkahhtnicak" path="res://Assets/CuteFantasy/Tiles/FarmLand_Tile.png" id="2_j5iip"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dck2lx7vvnv06" path="res://Assets/CuteFantasy/Tiles/Water_Middle.png" id="6_dpbjr"]
 [ext_resource type="Texture2D" uid="uid://dum1g157rhmb0" path="res://Assets/CuteFantasy/Tiles/Water_Tile.png" id="7_1aiqe"]
 [ext_resource type="PackedScene" uid="uid://chipog0irhkb8" path="res://Scenes/Player.tscn" id="8_2wl7l"]
+[ext_resource type="PackedScene" uid="uid://jhbwqbfyixu5" path="res://Scenes/Chicken.tscn" id="9_ps1qx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s8kwh"]
 texture = ExtResource("1_l5gj2")
@@ -114,4 +115,25 @@ tile_map_data = PackedByteArray("AAD///3/BQAAAAAAAAD///7/BQAAAAAAAAD/////BQAAAAA
 tile_set = SubResource("TileSet_uceq0")
 
 [node name="Player" parent="." instance=ExtResource("8_2wl7l")]
+position = Vector2(22, -26)
 _attackCooldown = 0.6
+
+[node name="Chickens" type="Node2D" parent="."]
+
+[node name="Chicken" parent="Chickens" instance=ExtResource("9_ps1qx")]
+position = Vector2(-177, 73)
+
+[node name="Chicken2" parent="Chickens" instance=ExtResource("9_ps1qx")]
+position = Vector2(162, 70)
+
+[node name="Chicken3" parent="Chickens" instance=ExtResource("9_ps1qx")]
+position = Vector2(-109, -160)
+
+[node name="Chicken4" parent="Chickens" instance=ExtResource("9_ps1qx")]
+position = Vector2(316, -235)
+
+[node name="Chicken5" parent="Chickens" instance=ExtResource("9_ps1qx")]
+position = Vector2(-186, -277)
+
+[node name="Chicken6" parent="Chickens" instance=ExtResource("9_ps1qx")]
+position = Vector2(-348, -89)
