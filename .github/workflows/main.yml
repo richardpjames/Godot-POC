@@ -1,5 +1,8 @@
 name: Build Godot POC Exe
-on: push
+on: 
+  push:
+    tags:
+      - v*    
 jobs:
   Build-Executable:
     runs-on: ubuntu-latest
@@ -20,6 +23,16 @@ jobs:
         run: |
           mkdir -p build/windows
           ./Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 -v --headless --export-release "Windows" ./build/windows/Godot-POC.exe
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
       - uses: actions/upload-artifact@v4
         with:
           name: Godot POC
