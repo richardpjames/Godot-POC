@@ -1,8 +1,5 @@
 name: Build Godot POC Exe
-on: 
-  push:
-    tags:
-      - v*    
+on: push  
 jobs:
   Build-Executable:
     runs-on: ubuntu-latest
