@@ -25,4 +25,4 @@ jobs:
           ./Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 -v --headless --export-release "Windows" ./build/windows/Godot-POC.exe
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/windows"
+          artifacts: "./build/windows/*"
