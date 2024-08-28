@@ -9,10 +9,11 @@ jobs:
         run: |
           wget -v https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_mono_linux_x86_64.zip
           unzip Godot_v4.3-stable_mono_linux_x86_64.zip
+          chmod +x ./Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64
       - name: Run Build
         run: |
           mkdir -v -p build/windows
-          godot -v --export "Windows" ./build/windows/Godot-POC.exe
+          ./Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 -v --headless --export "Windows" ./build/windows/Godot-POC.exe
       - uses: actions/upload-artifact@v2
         with:
           name: windows
