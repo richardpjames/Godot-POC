@@ -1,3 +1,4 @@
+on: push
 steps:
   - uses: actions/checkout@v2
   - uses: vitorgus/setup-godot@v1
