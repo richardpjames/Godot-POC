@@ -11,10 +11,13 @@ public partial class Chicken : CharacterBody2D
     [Export] private float _speed;
     private Vector2 _direction;
     private List<Vector2> _raycastDirections;
-    // Determine how far we will cast our ray length
-    private const int RAYLENGTH = 1000;
     // Determine how often we will re-evaluate the directions we can travel
     [Export] private float _evaluationTime;
+    // How far the chicken can see
+    [Export] private float _viewDistance;
+    // How many raycasts we will check
+    [Export] private int _viewResolution;
+    // Determine when we can next evaluate (for performance)
     private float _nextTimeToEvaluate = 0;
     // Get access to the sprite for flipping
     [Export] AnimatedSprite2D _sprite;
@@ -22,18 +25,14 @@ public partial class Chicken : CharacterBody2D
     public override void _Ready()
     {
         // Set up the list of directions to test with our raycasts
-        _raycastDirections = new List<Vector2>
+        _raycastDirections = new List<Vector2>();
+        for(float rotation = 0; rotation < Math.PI * 2; rotation += ((float) Math.PI * 2) / _viewResolution)
         {
-            // Add each of the directions of the compass moving clockwise
-            Vector2.Up,
-            (Vector2.Up + Vector2.Right).Normalized(),
-            Vector2.Right,
-            (Vector2.Right + Vector2.Down).Normalized(),
-            Vector2.Down,
-            (Vector2.Down + Vector2.Left).Normalized(),
-            Vector2.Left,
-            (Vector2.Left + Vector2.Up).Normalized()
-        };
+            _raycastDirections.Add(Vector2.Up.Rotated(rotation));
+        }
+        // Set initial evaluation time somewhat randomly
+        Random rand = new Random();
+        _nextTimeToEvaluate = Time.GetTicksMsec() + ((float) rand.NextDouble() * _evaluationTime * 1000);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -71,7 +70,7 @@ public partial class Chicken : CharacterBody2D
         foreach (Vector2 direction in _raycastDirections)
         {
             // We are going to fire our raycast from the global position of the chicken, then expand out to the direction times the length
-            PhysicsRayQueryParameters2D query = PhysicsRayQueryParameters2D.Create(GlobalPosition, GlobalPosition + (direction * RAYLENGTH));
+            PhysicsRayQueryParameters2D query = PhysicsRayQueryParameters2D.Create(GlobalPosition, GlobalPosition + (direction * _viewDistance));
             // The result holds what we have hit in the query
             Dictionary result = spaceState.IntersectRay(query);
             // If we don't hit anything then just return as this is the most clear direction

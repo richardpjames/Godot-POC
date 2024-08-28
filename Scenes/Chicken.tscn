@@ -69,8 +69,10 @@ height = 14.0
 
 [node name="Chicken" type="CharacterBody2D" node_paths=PackedStringArray("_sprite")]
 script = ExtResource("1_fl8i6")
-_speed = 25.0
+_speed = 20.0
 _evaluationTime = 3.0
+_viewDistance = 5.0
+_viewResolution = 8
 _sprite = NodePath("AnimatedSprite2D")
 
 [node name="BloodParticles" type="GPUParticles2D" parent="."]
