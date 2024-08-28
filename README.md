@@ -29,3 +29,6 @@ script it seems I need to check it in and run it, leaving behind a trail of fail
 
 In the end I managed to get there by creating an Ubuntu environment and then setting up my script to download
 and extract both Godot and the Godot Export templates and then using Godot in headless mode to complete the build process.
+
+When a particular commit is tagged with a version number (e.g. v0.1) that then triggers a build of the game and creates
+a new release on this GitHub page.
