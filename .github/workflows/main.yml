@@ -2,7 +2,7 @@ name: Build Godot POC Exe
 on: 
   push:
     tags:
-      - v*    
+        
 jobs:
   Build-Executable:
     runs-on: ubuntu-latest
@@ -23,7 +23,6 @@ jobs:
         run: |
           mkdir -p build/windows
           ./Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 -v --headless --export-release "Windows" ./build/windows/Godot-POC.exe
-      - uses: actions/upload-artifact@v4
+      - uses: ncipollo/release-action@v1
         with:
-          name: Godot POC
-          path: build/windows
+          artifacts: "build/windows"
