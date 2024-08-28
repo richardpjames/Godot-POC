@@ -1,7 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://jhbwqbfyixu5"]
+[gd_scene load_steps=13 format=3 uid="uid://jhbwqbfyixu5"]
 
 [ext_resource type="Script" path="res://Scripts/Chicken.cs" id="1_fl8i6"]
 [ext_resource type="Texture2D" uid="uid://cpehjjid2iboh" path="res://Assets/CuteFantasy/Animals/Chicken/Chicken.png" id="2_avqn0"]
+[ext_resource type="Texture2D" uid="uid://cqjau6opwkxqa" path="res://Assets/Circle.png" id="2_vfvnl"]
+
+[sub_resource type="Curve" id="Curve_ylyfb"]
+_data = [Vector2(0.846667, 1), 0.0, -6.68016, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g0vth"]
+curve = SubResource("Curve_ylyfb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88jus"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.03
+scale_max = 0.05
+color = Color(0.856494, 1.97336e-06, 1.92523e-07, 1)
+alpha_curve = SubResource("CurveTexture_g0vth")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hvro"]
 atlas = ExtResource("2_avqn0")
@@ -48,6 +72,14 @@ script = ExtResource("1_fl8i6")
 _speed = 25.0
 _evaluationTime = 3.0
 _sprite = NodePath("AnimatedSprite2D")
+
+[node name="BloodParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_88jus")
+texture = ExtResource("2_vfvnl")
+lifetime = 0.5
+one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ar5kd")
