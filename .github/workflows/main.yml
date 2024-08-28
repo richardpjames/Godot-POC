@@ -5,15 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: vitorgus/setup-godot@v1
         with:
-          godot-version: 4.3
-          mono: true
-      - name: Windows Build
-        run: |
-          mkdir -v -p build/windows
-          godot -v --export "Windows" ./build/windows/Godot-POC.exe
-      - uses: actions/upload-artifact@v2
+          lfs: true
+      - name: Build
+        id: build
+        uses: manleydev/build-godot-action@v1.4.1
         with:
-          name: windows
-          path: build/windows
+          name: example
+          preset: Windows
+          debugMode: "true"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Windows
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
