@@ -212,10 +212,10 @@ public partial class Player : CharacterBody2D
         for (int i = 0; i < bodies.Count; i++)
         {
             // Check if the thing we have hit is a chicken, then cast and give damage
-            if (bodies[i] is Chicken)
+            if (bodies[i] is Enemy)
             {
-                Chicken chicken = (Chicken) bodies[i];
-                chicken.TakeDamage();
+                Enemy enemy = (Enemy) bodies[i];
+                enemy.TakeDamage();
             }
         }
     }

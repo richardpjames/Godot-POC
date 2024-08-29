@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class Chicken : CharacterBody2D
+public partial class Chicken : Enemy
 {
     // The speed of the chicken
     [Export] private float _speed;
@@ -96,7 +96,7 @@ public partial class Chicken : CharacterBody2D
         return chosenDirection;
     }
 
-    public void TakeDamage()
+    public override void TakeDamage()
     {
         // Simply emit the blood particles
         _bloodParticles.Emitting = true;
