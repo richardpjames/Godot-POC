@@ -35,6 +35,14 @@ public partial class Enemy : CharacterBody2D
         }
         // Reduce the amount of health
         _currentHealth -= damage;
+        if (_currentHealth < 0)
+        {
+            Die();
+        }
+    }
+
+    protected virtual void Die()
+    {
     }
 }
 

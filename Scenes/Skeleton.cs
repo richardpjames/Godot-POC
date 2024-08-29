@@ -9,6 +9,8 @@ public partial class Skeleton : Enemy
     // The direction to walk
     private Vector2 _direction = Vector2.Zero;
     private Vector2 _facingDirection = Vector2.Zero;
+    // Record whether the skeleton is dead
+    private bool _isDead = false;
     public override void _Ready()
     {
         // Grab the player based on the "Player" group
@@ -19,17 +21,20 @@ public partial class Skeleton : Enemy
 
     public override void _PhysicsProcess(double delta)
     {
-        // Find the direction, based on the player 
-        _direction = DetermineDirection();
-        // This stores the last direction we were facing before stopping
-        if (_direction != Vector2.Zero)
+        if (!_isDead)
         {
-            _facingDirection = _direction;
+            // Find the direction, based on the player 
+            _direction = DetermineDirection();
+            // This stores the last direction we were facing before stopping
+            if (_direction != Vector2.Zero)
+            {
+                _facingDirection = _direction;
+            }
+            // Set our velocity and then move
+            Velocity = _direction * _speed;
+            MoveAndSlide();
+            Animate();
         }
-        // Set our velocity and then move
-        Velocity = _direction * _speed;
-        MoveAndSlide();
-        Animate();
     }
 
     private Vector2 DetermineDirection()
@@ -106,6 +111,17 @@ public partial class Skeleton : Enemy
             {
                 _sprite.Play("Run Down");
             }
+        }
+    }
+
+    protected override void Die()
+    {
+        // If not already dead
+        if (!_isDead)
+        {
+            // Play animation and set to dead
+            _sprite.Play("Death");
+            _isDead = true;
         }
     }
 }

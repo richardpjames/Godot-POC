@@ -88,4 +88,9 @@ public partial class Chicken : Enemy
         // Return the eventually chosen direction
         return chosenDirection;
     }
+
+    protected override void Die()
+    {
+        return;
+    }
 }

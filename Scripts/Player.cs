@@ -215,7 +215,7 @@ public partial class Player : CharacterBody2D
             if (bodies[i] is Enemy)
             {
                 Enemy enemy = (Enemy) bodies[i];
-                enemy.TakeDamage();
+                enemy.TakeDamage(1);
             }
         }
     }
