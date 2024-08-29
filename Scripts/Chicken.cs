@@ -22,6 +22,8 @@ public partial class Chicken : CharacterBody2D
     private float _nextTimeToEvaluate = 0;
     // Get access to the sprite for flipping
     [Export] AnimatedSprite2D _sprite;
+    // Get access to the particles for blood
+    [Export] GpuParticles2D _bloodParticles;
 
     public override void _Ready()
     {
@@ -92,5 +94,11 @@ public partial class Chicken : CharacterBody2D
         }
         // Return the eventually chosen direction
         return chosenDirection;
+    }
+
+    public void TakeDamage()
+    {
+        // Simply emit the blood particles
+        _bloodParticles.Emitting = true;
     }
 }

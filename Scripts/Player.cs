@@ -1,4 +1,7 @@
 using Godot;
+using Godot.Collections;
+using System;
+using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
@@ -16,6 +19,11 @@ public partial class Player : CharacterBody2D
     private float _attackEndTime = 0;
     // Hold the direction of the attack
     private Vector2 _attackDirection = Vector2.Zero;
+    // Attack directions
+    [Export] private Area2D _attackUp;
+    [Export] private Area2D _attackDown;
+    [Export] private Area2D _attackLeft;
+    [Export] private Area2D _attackRight;
 
     // For keeping track of the current state of the player
     enum State { IDLE, WALKING, ATTACKING }
@@ -115,7 +123,7 @@ public partial class Player : CharacterBody2D
             }
         }
         // Deal with Idle animations
-        if(_currentState == State.IDLE)
+        if (_currentState == State.IDLE)
         {
             // Determine whether there is any movement in the X axis
             if (_facingDirection.X != 0)
@@ -180,5 +188,35 @@ public partial class Player : CharacterBody2D
         _currentState = State.ATTACKING;
         // Set the attack direction for animation
         _attackDirection = _facingDirection;
+
+        Array<Node2D> bodies = new Array<Node2D>();
+        // Determine which box to use and then get overlapping bodies
+        if (_attackDirection == Vector2.Up)
+        {
+            bodies = _attackUp.GetOverlappingBodies();
+        }
+        else if (_attackDirection == Vector2.Down)
+        {
+            bodies = _attackDown.GetOverlappingBodies();
+        }
+        else if (_attackDirection == Vector2.Left)
+        {
+            bodies = _attackLeft.GetOverlappingBodies();
+        }
+        else if (_attackDirection == Vector2.Right)
+        {
+            bodies = _attackRight.GetOverlappingBodies();
+        }
+
+        // If we hit anything then cycle through and deal damage where we can
+        for (int i = 0; i < bodies.Count; i++)
+        {
+            // Check if the thing we have hit is a chicken, then cast and give damage
+            if (bodies[i] is Chicken)
+            {
+                Chicken chicken = (Chicken) bodies[i];
+                chicken.TakeDamage();
+            }
+        }
     }
 }

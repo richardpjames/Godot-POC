@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://chipog0irhkb8"]
+[gd_scene load_steps=61 format=3 uid="uid://chipog0irhkb8"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_kbp2q"]
 [ext_resource type="Texture2D" uid="uid://c6syi8wt4icmf" path="res://Assets/CuteFantasy/Player/Player.png" id="2_d8ks7"]
@@ -424,18 +424,64 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl8r4"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bqxb"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dj2k"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go74u"]
+size = Vector2(32, 16)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_attackUp", "_attackDown", "_attackLeft", "_attackRight")]
 script = ExtResource("1_kbp2q")
 _speed = 200.0
 _sprite = NodePath("Player Sprite")
+_attackCooldown = 0.6
+_attackUp = NodePath("Attack Areas/AttackUp")
+_attackDown = NodePath("Attack Areas/AttackDown")
+_attackLeft = NodePath("Attack Areas/AttackLeft")
+_attackRight = NodePath("Attack Areas/AttackRight")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_xuysq")
 
 [node name="Player Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l3lyt")
-animation = &"Idle Down"
+animation = &"Attack Side"
 autoplay = "Idle Down"
+frame = 2
+frame_progress = 0.260082
 
 [node name="Player Camera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="Attack Areas" type="Node2D" parent="."]
+
+[node name="AttackDown" type="Area2D" parent="Attack Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Areas/AttackDown"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_pl8r4")
+
+[node name="AttackLeft" type="Area2D" parent="Attack Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Areas/AttackLeft"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_7bqxb")
+
+[node name="AttackRight" type="Area2D" parent="Attack Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Areas/AttackRight"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_8dj2k")
+
+[node name="AttackUp" type="Area2D" parent="Attack Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Areas/AttackUp"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_go74u")

@@ -17,8 +17,8 @@ emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
-initial_velocity_min = 50.0
-initial_velocity_max = 100.0
+initial_velocity_min = 75.0
+initial_velocity_max = 125.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.03
 scale_max = 0.05
@@ -67,17 +67,18 @@ animations = [{
 radius = 7.0
 height = 14.0
 
-[node name="Chicken" type="CharacterBody2D" node_paths=PackedStringArray("_sprite")]
+[node name="Chicken" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_bloodParticles") groups=["Enemy"]]
 script = ExtResource("1_fl8i6")
 _speed = 20.0
 _evaluationTime = 1.0
 _viewDistance = 5.0
 _viewResolution = 16
 _sprite = NodePath("AnimatedSprite2D")
+_bloodParticles = NodePath("BloodParticles")
 
 [node name="BloodParticles" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 150
+amount = 75
 process_material = SubResource("ParticleProcessMaterial_88jus")
 texture = ExtResource("2_vfvnl")
 lifetime = 0.5

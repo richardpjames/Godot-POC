@@ -116,7 +116,6 @@ tile_set = SubResource("TileSet_uceq0")
 
 [node name="Player" parent="." instance=ExtResource("8_2wl7l")]
 position = Vector2(22, -26)
-_attackCooldown = 0.6
 
 [node name="Chickens" type="Node2D" parent="."]
 

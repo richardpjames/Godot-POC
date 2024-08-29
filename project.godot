@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Godot POC"
 
+[global_group]
+
+Enemy=""
+
 [input]
 
 Left={
