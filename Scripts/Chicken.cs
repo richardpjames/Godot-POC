@@ -10,6 +10,7 @@ public partial class Chicken : CharacterBody2D
     // The speed of the chicken
     [Export] private float _speed;
     private Vector2 _direction;
+    private Vector2 _startPosition;
     private List<Vector2> _raycastDirections;
     // Determine how often we will re-evaluate the directions we can travel
     [Export] private float _evaluationTime;
@@ -24,6 +25,8 @@ public partial class Chicken : CharacterBody2D
 
     public override void _Ready()
     {
+        // Store the start position of the chicken (to avoid wandering too far)
+        _startPosition = GlobalPosition;
         // Set up the list of directions to test with our raycasts
         _raycastDirections = new List<Vector2>();
         for(float rotation = 0; rotation < Math.PI * 2; rotation += ((float) Math.PI * 2) / _viewResolution)
