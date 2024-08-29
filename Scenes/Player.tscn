@@ -1,7 +1,8 @@
-[gd_scene load_steps=61 format=3 uid="uid://chipog0irhkb8"]
+[gd_scene load_steps=62 format=3 uid="uid://chipog0irhkb8"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_kbp2q"]
 [ext_resource type="Texture2D" uid="uid://c6syi8wt4icmf" path="res://Assets/CuteFantasy/Player/Player.png" id="2_d8ks7"]
+[ext_resource type="Script" path="res://Scenes/Camera.cs" id="3_8iylx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuysq"]
 radius = 6.0
@@ -436,7 +437,7 @@ size = Vector2(20, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go74u"]
 size = Vector2(32, 16)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_attackUp", "_attackDown", "_attackLeft", "_attackRight") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_attackUp", "_attackDown", "_attackLeft", "_attackRight", "_camera") groups=["Player"]]
 collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_kbp2q")
@@ -447,6 +448,7 @@ _attackUp = NodePath("Attack Areas/AttackUp")
 _attackDown = NodePath("Attack Areas/AttackDown")
 _attackLeft = NodePath("Attack Areas/AttackLeft")
 _attackRight = NodePath("Attack Areas/AttackRight")
+_camera = NodePath("Player Camera")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_xuysq")
@@ -461,6 +463,9 @@ frame_progress = 0.260082
 [node name="Player Camera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
+script = ExtResource("3_8iylx")
+_intensity = 50.0
+_duration = 0.5
 
 [node name="Attack Areas" type="Node2D" parent="."]
 

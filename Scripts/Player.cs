@@ -24,6 +24,8 @@ public partial class Player : CharacterBody2D
     [Export] private Area2D _attackDown;
     [Export] private Area2D _attackLeft;
     [Export] private Area2D _attackRight;
+    // Camera for shaking
+    [Export] private Camera _camera;
 
     // For keeping track of the current state of the player
     enum State { IDLE, WALKING, ATTACKING }
@@ -216,6 +218,8 @@ public partial class Player : CharacterBody2D
             {
                 Enemy enemy = (Enemy) bodies[i];
                 enemy.TakeDamage(1);
+                // Camera shake
+                _camera.Shake();
             }
         }
     }
