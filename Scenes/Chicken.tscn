@@ -67,7 +67,7 @@ animations = [{
 radius = 7.0
 height = 14.0
 
-[node name="Chicken" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_bloodParticles") groups=["Enemy"]]
+[node name="Chicken" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_bloodParticles")]
 script = ExtResource("1_fl8i6")
 _speed = 20.0
 _evaluationTime = 1.0

@@ -19,7 +19,7 @@ public partial class Player : CharacterBody2D
     private float _attackEndTime = 0;
     // Hold the direction of the attack
     private Vector2 _attackDirection = Vector2.Zero;
-    // Attack directions
+    // Attack directions - shapes for detecting attack victims
     [Export] private Area2D _attackUp;
     [Export] private Area2D _attackDown;
     [Export] private Area2D _attackLeft;

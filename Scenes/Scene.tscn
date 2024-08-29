@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://0lxl7vrhd5wf"]
+[gd_scene load_steps=19 format=4 uid="uid://0lxl7vrhd5wf"]
 
 [ext_resource type="Texture2D" uid="uid://c1opy0rhvywg2" path="res://Assets/CuteFantasy/Tiles/Cliff_Tile.png" id="1_l5gj2"]
 [ext_resource type="Texture2D" uid="uid://datkahhtnicak" path="res://Assets/CuteFantasy/Tiles/FarmLand_Tile.png" id="2_j5iip"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dum1g157rhmb0" path="res://Assets/CuteFantasy/Tiles/Water_Tile.png" id="7_1aiqe"]
 [ext_resource type="PackedScene" uid="uid://chipog0irhkb8" path="res://Scenes/Player.tscn" id="8_2wl7l"]
 [ext_resource type="PackedScene" uid="uid://jhbwqbfyixu5" path="res://Scenes/Chicken.tscn" id="9_ps1qx"]
+[ext_resource type="PackedScene" uid="uid://bas3aaef4siva" path="res://Scenes/Skeleton.tscn" id="10_400jf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s8kwh"]
 texture = ExtResource("1_l5gj2")
@@ -136,3 +137,17 @@ position = Vector2(-186, -277)
 
 [node name="Chicken6" parent="Chickens" instance=ExtResource("9_ps1qx")]
 position = Vector2(-348, -89)
+
+[node name="Skeletons" type="Node2D" parent="."]
+
+[node name="Skeleton" parent="Skeletons" instance=ExtResource("10_400jf")]
+position = Vector2(-103, 130)
+
+[node name="Skeleton2" parent="Skeletons" instance=ExtResource("10_400jf")]
+position = Vector2(-145, -248)
+
+[node name="Skeleton3" parent="Skeletons" instance=ExtResource("10_400jf")]
+position = Vector2(179, -253)
+
+[node name="Skeleton4" parent="Skeletons" instance=ExtResource("10_400jf")]
+position = Vector2(291, 157)
