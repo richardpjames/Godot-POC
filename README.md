@@ -32,3 +32,10 @@ and extract both Godot and the Godot Export templates and then using Godot in he
 
 When a particular commit is tagged with a version number (e.g. v0.1) that then triggers a build of the game and creates
 a new release on this GitHub page.
+
+## AI Behaviours
+
+The project lets me play with a few different techniques for NPC AI. So far the following examples are implemented
+
+- Chickens - make a judgement on the world around them by raycasting in a number of directions perdiodically to try and avoid walking into things.
+- Skeletons - have knowledge of where the player is, but will only move towards them when there is a direct line of sight.
