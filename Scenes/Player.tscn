@@ -436,7 +436,9 @@ size = Vector2(20, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go74u"]
 size = Vector2(32, 16)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_attackUp", "_attackDown", "_attackLeft", "_attackRight")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_attackUp", "_attackDown", "_attackLeft", "_attackRight") groups=["Player"]]
+collision_layer = 3
+motion_mode = 1
 script = ExtResource("1_kbp2q")
 _speed = 200.0
 _sprite = NodePath("Player Sprite")

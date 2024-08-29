@@ -7,10 +7,7 @@ using System.Linq;
 
 public partial class Chicken : Enemy
 {
-    // The speed of the chicken
-    [Export] private float _speed;
     private Vector2 _direction;
-    private Vector2 _startPosition;
     private List<Vector2> _raycastDirections;
     // Determine how often we will re-evaluate the directions we can travel
     [Export] private float _evaluationTime;
@@ -20,24 +17,20 @@ public partial class Chicken : Enemy
     [Export] private int _viewResolution;
     // Determine when we can next evaluate (for performance)
     private float _nextTimeToEvaluate = 0;
-    // Get access to the sprite for flipping
-    [Export] AnimatedSprite2D _sprite;
-    // Get access to the particles for blood
-    [Export] GpuParticles2D _bloodParticles;
 
     public override void _Ready()
     {
-        // Store the start position of the chicken (to avoid wandering too far)
-        _startPosition = GlobalPosition;
         // Set up the list of directions to test with our raycasts
         _raycastDirections = new List<Vector2>();
-        for(float rotation = 0; rotation < Math.PI * 2; rotation += ((float) Math.PI * 2) / _viewResolution)
+        for (float rotation = 0; rotation < Math.PI * 2; rotation += ((float)Math.PI * 2) / _viewResolution)
         {
             _raycastDirections.Add(Vector2.Up.Rotated(rotation));
         }
         // Set initial evaluation time somewhat randomly
         Random rand = new Random();
-        _nextTimeToEvaluate = Time.GetTicksMsec() + ((float) rand.NextDouble() * _evaluationTime * 1000);
+        _nextTimeToEvaluate = Time.GetTicksMsec() + ((float)rand.NextDouble() * _evaluationTime * 1000);
+        // Call the method in the Enemy class
+        base._Ready();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -89,16 +82,10 @@ public partial class Chicken : Enemy
                 // Store the new distance and set this to the chosen direction
                 maxDistance = distanceToObject;
                 // In a tie this will be random as we randomised the list
-                chosenDirection = direction;  
+                chosenDirection = direction;
             }
         }
         // Return the eventually chosen direction
         return chosenDirection;
-    }
-
-    public override void TakeDamage()
-    {
-        // Simply emit the blood particles
-        _bloodParticles.Emitting = true;
     }
 }

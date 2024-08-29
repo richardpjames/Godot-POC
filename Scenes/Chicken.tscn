@@ -8,7 +8,7 @@
 _data = [Vector2(0.846667, 1), 0.0, -6.68016, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_g0vth"]
+[sub_resource type="CurveTexture" id="CurveTexture_gjn1y"]
 curve = SubResource("Curve_ylyfb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88jus"]
@@ -23,7 +23,7 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.03
 scale_max = 0.05
 color = Color(0.856494, 1.97336e-06, 1.92523e-07, 1)
-alpha_curve = SubResource("CurveTexture_g0vth")
+alpha_curve = SubResource("CurveTexture_gjn1y")
 hue_variation_min = -2.23517e-08
 hue_variation_max = -2.23517e-08
 
@@ -68,12 +68,14 @@ radius = 7.0
 height = 14.0
 
 [node name="Chicken" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_bloodParticles")]
+motion_mode = 1
 script = ExtResource("1_fl8i6")
-_speed = 20.0
 _evaluationTime = 1.0
 _viewDistance = 5.0
 _viewResolution = 16
+_speed = 20.0
 _sprite = NodePath("AnimatedSprite2D")
+_maxHealth = 5
 _bloodParticles = NodePath("BloodParticles")
 
 [node name="BloodParticles" type="GPUParticles2D" parent="."]
